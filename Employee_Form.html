@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Ajax Promise</title>
+    <style>
+        .body{
+            margin: auto;
+        }
+        div{
+            border: 1px solid blue;
+            background-color: lightblue;
+            width: 80%;
+            padding: 10px;
+        }
+    </style>
+     <script src="HttpService_Ajax_Promise.js"></script>
+</head>
+<body>
+    <h1>Test Result<h1>
+    <div id="get-Servise"></div>
+    <div id="delete-Servise"></div>
+    <div id="post-Servise"></div>
+    <script>
+        const getElement = document.querySelector("#get-Servise");
+        const getURL = "http://localhost:3000/employee/1";
+        makePromiseCall("GET", getURL, true)
+            .then(responseText => {
+                getElement.textContent = "Get Data :"+responseText;
+            })
+            .catch(error => { getElement.textContent = "GET Error Status " + JSON.stringify(error) });
+
+        const deleteElement = document.querySelector("#delete-Servise");
+        const deleteURL = "http://localhost:3000/employee/4";
+        makePromiseCall("DELETE", deleteURL, false)
+            .then(responseText => {
+                deleteElement.textContent = "Deleted Data :"+responseText;
+            })
+            .catch(error => { deleteElement.textContent = "DELETE Error Status " + JSON.stringify(error) });
+
+        const postElement = document.querySelector("#post-Servise");
+        const postURL = "http://localhost:3000/employee/";
+        const EmpData = { "name": "Mathi", "salary": "35000" };
+        makePromiseCall("POST", postURL, true, EmpData)
+            .then(responseText => {
+                postElement.textContent = "Added Data :"+responseText;
+            })
+            .catch(error => { deleteElement.textContent = "POST Error Status " + JSON.stringify(error)});  
+    </script>
+</body>
+</html>

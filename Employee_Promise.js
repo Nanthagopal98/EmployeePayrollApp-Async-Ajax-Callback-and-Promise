@@ -34,7 +34,6 @@ function makePromiseCall(methodType, url, async = true, data = null){
         console.log(methodType + " Request Send To Server");
     });
 }
-
     const getURL = "http://localhost:3000/employee/1";
     makePromiseCall("GET", getURL, true)
     .then (responseText =>{
